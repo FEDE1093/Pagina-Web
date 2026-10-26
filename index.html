@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Origen.es</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Archivo+Black&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#050505;--card:#150f12;--line:rgba(255,255,255,.08);--accent:#ff3b57;--muted:#a79ca0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:#fff;font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(800px 400px at 50% -10%,rgba(255,59,87,.18),transparent),radial-gradient(circle,rgba(255,255,255,.18) 1px,transparent 1.5px) 0 0/90px 90px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--accent)}
+/* nav */
+nav{position:sticky;top:14px;z-index:50;max-width:1170px;margin:14px auto 0;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border:1px solid var(--line);border-radius:999px;background:rgba(15,10,12,.8);backdrop-filter:blur(12px)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.05em}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#a3122a);display:grid;place-items:center;font-style:normal;font-weight:800}
+.links{display:flex;gap:30px;align-items:center;font-size:15px;font-weight:500}
+.links a:hover{color:var(--accent)}
+.free{border:1px solid var(--accent);padding:7px 16px;border-radius:999px;background:rgba(255,59,87,.12);box-shadow:0 0 18px rgba(255,59,87,.35)}
+.free::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px}
+.right{display:flex;gap:10px;align-items:center}
+.btn{background:var(--accent);border:0;color:#fff;padding:11px 20px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 6px 22px rgba(255,59,87,.4)}
+.btn:hover{filter:brightness(1.1)}
+.icon{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#16101300;display:grid;place-items:center}
+/* sections */
+section{max-width:1170px;margin:0 auto;padding:90px 20px 40px}
+.head{text-align:center;margin-bottom:50px}
+.head h1,.head h2{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(38px,6vw,64px);margin:14px 0}
+.head p{color:#cfc5c9;max-width:560px;margin:0 auto;line-height:1.7;font-size:18px}
+/* hero */
+.hero{text-align:center;padding-top:110px}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(46px,8vw,96px);line-height:1}
+.hero h1 span{color:var(--accent)}
+.hero p{color:#cfc5c9;font-size:20px;margin:22px auto 34px;max-width:620px}
+.hero .btn{padding:15px 30px;font-size:16px;margin:0 6px}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+.stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:50px}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:18px 34px}
+.stat b{display:block;font-size:28px;font-family:'Manrope'}
+.stat span{color:var(--muted);font-size:13px}
+/* guide */
+.guide{display:grid;grid-template-columns:320px 1fr;gap:20px}
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:14px;align-items:center;padding:16px 20px;border:1px solid var(--line);border-radius:999px;background:#120d10;color:#d8cfd2;font-weight:600;text-align:left;font-size:16px}
+.step small{font-family:'JetBrains Mono';color:var(--muted)}
+.step.active{background:linear-gradient(90deg,#3a0d17,#1a0a0e);border-color:#7a1b2c;color:#fff}
+.note{border:1px solid var(--line);border-radius:26px;padding:16px 22px;font-size:13px;color:var(--muted);background:#120d10}
+.panel{border:1px solid var(--line);border-radius:34px;padding:60px 44px 30px;min-height:430px;background:linear-gradient(180deg,#0c0a0d,#1a0e13);display:flex;flex-direction:column;justify-content:space-between}
+.panel h3{font-family:'Manrope';font-size:42px;margin:14px 0}
+.panel p{color:#cfc5c9;line-height:1.7;font-size:18px;max-width:520px}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.pill{border:1px solid var(--line);background:#ffffff08;padding:10px 20px;border-radius:999px;font-weight:600;font-size:14px}
+.pill:hover{border-color:var(--accent)}
+.next{align-self:flex-end;border:1px solid var(--line);background:#ffffff0a;color:#fff;padding:12px 24px;border-radius:999px;font-weight:700}
+/* shop */
+.tools{display:flex;gap:12px;margin-bottom:16px}
+.search{flex:1;border:1px solid var(--line);background:#120b0e;border-radius:16px;padding:15px 20px;color:#fff;font-size:15px;outline:none}
+.pillbtn{border:1px solid var(--line);background:#120b0e;color:#fff;border-radius:16px;padding:0 22px;font-weight:600}
+.cats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0 34px}
+.cat{background:transparent;border:1px solid transparent;color:#d8cfd2;padding:10px 18px;border-radius:12px;font-weight:600;font-size:15px}
+.cat.active{background:rgba(255,59,87,.14);border-color:#7a1b2c;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card);transition:.25s}
+.card:hover{transform:translateY(-5px)}
+.art{height:190px;display:grid;place-items:center;position:relative}
+.art svg{width:120px;filter:drop-shadow(0 0 18px var(--c))}
+.card .body{padding:20px}
+.card h4{font-size:21px;font-weight:700;margin-bottom:14px}
+.row{display:flex;gap:10px;align-items:baseline;margin:9px 0;color:#c9bfc3;font-size:15px}
+.row b{color:#fff;font-size:17px;font-weight:800}
+.tag{display:inline-block;border:1px solid var(--c);color:var(--c);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;margin-top:10px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.price{font-size:28px;font-weight:800;font-family:'Manrope'}
+.buy{background:var(--accent);border:0;color:#fff;padding:10px 20px;border-radius:12px;font-weight:700}
+.cars{background:radial-gradient(circle at 20% 0,#2b1a0a,#0a0a0f);border:1px solid #5a3a1a;border-radius:22px;padding:30px 36px;margin:44px 0 24px;box-shadow:0 0 40px rgba(255,140,0,.15)}
+.cars h2{font-family:'Archivo Black';font-style:italic;font-size:clamp(34px,6vw,64px)}
+.cars h2 span{color:#ff9a1f}
+.cars p{color:#cfc5c9;margin-top:6px}
+.cars .mono{color:#ffc933;letter-spacing:.2em}
+.car .art{background:linear-gradient(180deg,#2a2d38,#0d0d12)}
+.car .tagx{position:absolute;top:12px;left:12px;background:#ff5a14;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:800;letter-spacing:.08em}
+.car h4{font-family:'Archivo Black';font-style:italic;text-transform:uppercase}
+.bar{height:3px;background:#ff7a1f;border-radius:3px;margin:4px 0 10px}
+.car .buy{background:#ff8a1f}
+footer{text-align:center;color:var(--muted);padding:60px 20px;border-top:1px solid var(--line);margin-top:60px;font-size:14px}
+.toast{position:fixed;bottom:24px;right:24px;background:#1b1115;border:1px solid var(--accent);padding:14px 22px;border-radius:14px;opacity:0;transform:translateY(20px);transition:.3s;z-index:99}
+.toast.show{opacity:1;transform:none}
+.sec{margin:50px 0 20px}.sec h3{font-family:'Manrope';font-size:26px}.sec p{color:var(--muted);margin-top:6px}
+.neon{height:190px;margin:10px;border:2px solid var(--c);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--c);box-shadow:inset 0 0 22px color-mix(in srgb,var(--c) 30%,transparent),0 0 16px color-mix(in srgb,var(--c) 25%,transparent);background:#050505;position:relative}
+.neon .e{font-size:54px;filter:drop-shadow(0 0 8px var(--c))}
+.neon .t{border:1px solid var(--c);border-radius:8px;padding:6px 14px;font-family:'Archivo Black';font-size:17px;text-align:center}
+.neon .c{position:absolute;top:10px;left:10px;background:#000a;color:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:.08em}
+.card ul{list-style:none;min-height:96px}.card li{color:#c9bfc3;font-size:14px;margin:7px 0}.card li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:2px;background:var(--accent);margin-right:10px}
+.card small{color:var(--muted);display:block;font-size:12px}
+.buy.ghost{background:#ffffff0a;border:1px solid var(--line);color:#d8cfd2}
+.coin{max-width:700px;margin:0 auto 30px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:28px;padding:34px;text-align:center;background:linear-gradient(180deg,#1e1712,#120d10)}
+.coin.ic{background:linear-gradient(180deg,#121a22,#0e0d10)}
+.coin .disc{width:130px;height:130px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font:800 48px Manrope;color:#5a3a00;background:radial-gradient(circle at 35% 30%,#fff3b0,var(--c));box-shadow:0 0 50px var(--c)}
+.coin.ic .disc{color:#0b3a66}
+.coin .big{font:600 clamp(48px,9vw,84px)/1 Manrope;background:linear-gradient(#fff,var(--c));-webkit-background-clip:text;color:transparent}
+.coin .lab{letter-spacing:.3em;color:#8a7f83;font-size:13px;margin:6px 0 24px;font-weight:700}
+.coin input[type=range]{width:100%;accent-color:var(--c);margin-bottom:18px}
+.quick{display:flex;gap:10px;margin-bottom:20px}.quick button{flex:1;padding:16px;border-radius:999px;border:1px solid var(--line);background:#1a1517;color:#d8cfd2;font-weight:700}
+.quick button.on{background:var(--c);color:#111}
+.total{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:18px;padding:18px 24px;background:#0d0b0c;text-align:left;margin-bottom:16px}
+.total small{display:block;color:var(--muted)}.total b{font:600 32px Manrope}
+.btn.big{width:100%;padding:17px;font-size:16px}
+.coin .btn.big{background:var(--c);color:#111;box-shadow:0 8px 30px color-mix(in srgb,var(--c) 40%,transparent)}
+.banda{display:grid;grid-template-columns:1.2fr 1fr;border:2px solid #ff3b57;border-radius:26px;overflow:hidden;box-shadow:0 0 50px rgba(255,59,87,.25);background:#150f12;margin-bottom:20px}
+.banda .img{min-height:380px;background:linear-gradient(180deg,transparent 40%,#000c),radial-gradient(circle at 30% 30%,#3a5a2a,#10190d);display:flex;align-items:flex-end;padding:28px}
+.banda .img h2{font:800 clamp(34px,5vw,56px) Manrope}
+.banda .inf{padding:30px}.banda h3{font:800 34px Manrope;margin:10px 0}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.chips span{border:1px solid #4a1a24;background:#2a0f16;border-radius:12px;padding:12px;font-size:13px;font-weight:600}
+.cupos{display:flex;gap:6px;margin:8px 0 22px}.cupos i{flex:1;height:6px;border-radius:4px;background:#ff3b57}.cupos i.off{background:#2a2225}
+.pay{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px;border:1px solid var(--line);border-radius:24px;padding:28px;background:#150f12;margin-top:44px}
+.pay p{color:var(--muted);font-size:14px;margin-top:6px;line-height:1.5}
+.modal{position:fixed;inset:0;background:#050505f2;z-index:100;display:none;place-items:center;padding:20px;overflow:auto}.modal.show{display:grid}
+.lbox{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;max-width:1000px;width:100%}
+.lleft{min-height:520px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,#303642,#0c0c10);display:flex;align-items:flex-end;padding:20px}
+.lcard{background:#150f12;border:1px solid var(--line);border-radius:18px;padding:20px}.lcard h4{font-size:22px;margin:10px 0 6px}.lcard p{color:#c9bfc3;font-size:14px;line-height:1.5}
+.ok{background:#12301f;color:#4fd69a;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600}
+.lright{border:1px solid var(--line);border-radius:22px;padding:34px;background:#150f12}.lright>a{font-size:14px;font-weight:600}
+.lright h3{font-size:24px;margin:34px 0 14px}.lright h2{font-size:26px}.dot{display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--accent);margin-right:8px}
+.sub{color:#b5aaae;margin:10px 0 24px;line-height:1.5}
+.sep{text-align:center;color:var(--muted);font-size:13px;font-weight:600;margin:24px 0;border-top:1px solid var(--line);line-height:0}.sep span{background:#150f12;padding:0 14px}
+.li{color:#c9bfc3;font-size:14px;line-height:1.5;margin:14px 0}
+.recent{position:fixed;left:16px;bottom:16px;width:300px;background:#150f12;border:1px solid var(--line);border-radius:16px;padding:14px 16px;z-index:60;transform:translateY(150%);transition:.5s;font-size:14px}.recent.show{transform:none}.recent small{color:var(--muted)}.recent b{display:block;margin:4px 0}
+.shot{height:230px;border-radius:18px;border:1px solid var(--line);transition:.3s;display:flex;align-items:flex-end;padding:16px;font-weight:700;cursor:zoom-in}.shot:hover{transform:scale(1.03)}
+@media(max-width:820px){.banda,.lbox,.pay{grid-template-columns:1fr}.chips{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){.guide{grid-template-columns:1fr}.links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo"><i>O</i> ORIGEN</a>
+  <div class="links">
+    <a href="#como-jugar">Cómo jugar</a><a href="#ciudad">La ciudad</a><a href="#tienda">Tienda</a><a href="#normativas">Normativas</a>
+    <a href="#" class="free">Banda gratis</a>
+  </div>
+  <div class="right"><a href="#" class="icon" title="Discord">💬</a><button class="btn">Iniciar sesión</button></div>
+</nav>
+
+<section class="hero" id="ciudad">
+  <p class="mono">Servidor de rol · FiveM</p>
+  <h1 style="margin-top:18px">Bienvenido a<br><span>Origen.es</span></h1>
+  <p>Una ciudad viva donde cada decisión cuenta. Roleplay serio, economía real y una comunidad que te espera.</p>
+  <a href="#como-jugar" class="btn">Empezar a jugar</a><a href="#tienda" class="btn ghost">Ver tienda</a>
+  <div class="stats">
+    <div class="stat"><b>+300</b><span>Jugadores online</span></div>
+    <div class="stat"><b>24/7</b><span>Servidor activo</span></div>
+    <div class="stat"><b>+50</b><span>Trabajos y bandas</span></div>
+  </div>
+</section>
+
+<section id="como-jugar">
+  <div class="head"><p class="mono">Guía rápida</p><h2>Cómo jugar</h2><p>Cinco pasos con los enlaces oficiales. Solo PC: FiveM no existe en consolas.</p></div>
+  <div class="guide">
+    <div class="steps" id="steps"></div>
+    <div class="panel">
+      <div>
+        <p class="mono" id="pn"></p>
+        <h3 id="pt"></h3><p id="pd"></p>
+        <div class="pills" id="pp"></div>
+      </div>
+      <button class="next" id="next">Siguiente ↗</button>
+    </div>
+  </div>
+</section>
+
+<section id="tienda">
+  <div class="head"><p class="mono">Tienda oficial</p><h2>Tienda</h2></div>
+  <div class="tools">
+    <input class="search" id="q" placeholder="Buscar en el catálogo…" />
+    <button class="pillbtn">Mis compras</button>
+    <button class="pillbtn">Mi carrito <b id="cart">$0</b></button>
+  </div>
+  <div class="cats" id="cats"></div>
+  <div class="grid" id="vips"></div>
+  <div class="cars">
+    <p class="mono">Pack exclusivo · Edición limitada</p>
+    <h2>RÁPIDOS <span>Y FURIOSOS</span></h2>
+    <p>Los autos de la saga, listos para tu garage. Vivís la vida de a un cuarto de milla.</p>
+  </div>
+  <div class="grid" id="cars"></div>
+  <div id="more"></div>
+  <div class="pay">
+    <div><p class="mono" style="color:#8a7f83;font-size:11px">Medios de pago</p>
+      <div class="pills" style="margin:14px 0"><span class="pill">💳 Mercado Pago</span><span class="pill">💳 PayPal</span></div>
+      <small style="color:var(--muted)">Precios en ARS · Modalidad indicada en cada producto</small></div>
+    <div><b>⚡ Entrega inmediata</b><p>Recibís tu código al instante y lo canjeás con /compra.</p></div>
+    <div><b>🛡 Pago protegido</b><p>Pasarelas verificadas. No guardamos datos de tu tarjeta.</p></div>
+    <div><b>💬 Soporte en Discord</b><p>Si algo no llegó, abrí un ticket y el staff lo revisa.</p></div>
+  </div>
+</section>
+
+<section id="envivo">
+  <div class="head"><p class="mono">Comunidad</p><h2>La ciudad, en vivo</h2><p>Momentos reales de nuestros jugadores. Pasá el mouse para verlos de frente, hacé clic para ampliar.</p>
+    <div class="pill" style="display:inline-block;margin-top:22px"><b>Origen.es</b> &nbsp;<span style="color:var(--accent)">●</span> <span id="online">1.200</span> en línea</div></div>
+  <div class="grid" id="gallery"></div>
+</section>
+
+<div class="modal" id="login"><div class="lbox">
+  <div class="lleft"><div class="lcard"><span class="ok">● Servidor en línea</span><h4>Tu ciudad te espera</h4><p>La PCU es tu ficha completa en Origen.es: perfil, facción, antecedentes y todo lo que hiciste en la ciudad.</p></div></div>
+  <div class="lright">
+    <a href="#" id="lclose">← Volver al inicio</a>
+    <h3><span class="dot"></span> Origen.es</h3>
+    <h2>Acceso a la PCU</h2>
+    <p class="sub">Iniciá sesión con tu cuenta de Steam o Discord para entrar a tu panel ciudadano.</p>
+    <button class="btn big" id="steam">Continuar con Steam</button>
+    <button class="btn big" id="discord" style="margin-top:12px;background:#5865f2;box-shadow:0 6px 22px rgba(88,101,242,.4)">Continuar con Discord</button>
+    <div class="sep"><span>Acceso único</span></div>
+    <p class="li">🛡 Sin usuario ni contraseña: <b>tu cuenta de Steam es tu identidad</b> en el servidor.</p>
+    <p class="li">🔒 Tus datos quedan vinculados solo a tu Steam ID y nunca se comparten.</p>
+    <p class="li" style="color:var(--muted)">💬 ¿No podés entrar? <b>Pedí ayuda en Discord</b></p>
+  </div>
+</div></div>
+<div class="recent" id="recent"></div>
+
+<section id="normativas">
+  <div class="head"><p class="mono">Reglas</p><h2>Normativas</h2><p>Leé las normas antes de entrar. El respeto y el buen rol son la base de Origen.es.</p></div>
+</section>
+
+<footer>© 2026 Origen.es · Todos los derechos reservados. No afiliado a Rockstar Games ni a Take-Two.</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const steps=[
+ ["Comprá GTA V","Comprá GTA V para PC","FiveM solo funciona en PC con una copia original de Grand Theft Auto V. Cualquiera de estas tiendas sirve.",[["Steam","https://store.steampowered.com/app/271590"],["Rockstar Games","https://www.rockstargames.com/games/V"],["Epic Games","https://store.epicgames.com/p/grand-theft-auto-v"]]],
+ ["Instalá FiveM","Instalá FiveM","Descargá el cliente oficial de FiveM e instalalo. Es gratuito.",[["Descargar FiveM","https://fivem.net"]]],
+ ["Unite al Discord","Unite al Discord","Entrá a nuestro Discord para verificarte y recibir novedades.",[["Discord","#"]]],
+ ["Normativas","Leé las normativas","Conocé las reglas del servidor para evitar sanciones.",[["Ver normativas","#normativas"]]],
+ ["Conectate","Conectate a Origen.es","Abrí FiveM, buscá Origen.es y entrá a la ciudad.",[["Conectar","fivem://connect/origen.es"]]]
+];
+let cur=0;
+const S=document.getElementById('steps');
+function renderStep(){
+ S.innerHTML=steps.map((s,i)=>`<button class="step ${i==cur?'active':''}" data-i="${i}"><small>0${i+1}</small>${s[0]}</button>`).join('')+
+ `<div class="note">Windows 10/11 · 16 GB RAM recomendados · micrófono obligatorio</div>`;
+ const s=steps[cur];
+ pn.textContent=`Paso 0${cur+1} de 05`;pt.textContent=s[1];pd.textContent=s[2];
+ pp.innerHTML=s[3].map(l=>`<a class="pill" target="_blank" href="${l[1]}">${l[0]} ↗</a>`).join('');
+}
+S.onclick=e=>{const b=e.target.closest('.step');if(b){cur=+b.dataset.i;renderStep()}};
+next.onclick=()=>{cur=(cur+1)%5;renderStep()};
+renderStep();
+
+const crown=c=>`<svg viewBox="0 0 100 80" style="--c:${c}"><path d="M10 60 L16 20 L35 42 L50 8 L65 42 L84 20 L90 60 Z" fill="${c}" fill-opacity=".35" stroke="${c}" stroke-width="3" stroke-linejoin="round"/><rect x="18" y="64" width="64" height="10" rx="4" fill="${c}" fill-opacity=".5" stroke="${c}" stroke-width="3"/></svg>`;
+const vips=[
+ ["VIP Bronce","#d98d52","$600.000","2.600","100 kg",3,"$ 6.000"],
+ ["VIP Plata","#cfd4de","$1.000.000","3.800","150 kg",4,"$ 8.000"],
+ ["VIP Diamond","#3aa0ff","$1.500.000","4.500","200 kg",6,"$ 10.000"]
+];
+const cars=[["Mazda RX-7","#e0383f"],["Honda S2000","#c9748a"],["Nissan 350Z","#9aa0a8"],["Nissan 350Z - V2","#d4a43a"]];
+const carSvg=c=>`<svg viewBox="0 0 120 50" style="--c:${c}"><path d="M8 34 Q10 22 34 20 L50 10 Q70 6 86 18 Q112 20 112 34 Z" fill="${c}"/><circle cx="32" cy="36" r="9" fill="#111" stroke="#555" stroke-width="2"/><circle cx="90" cy="36" r="9" fill="#111" stroke="#555" stroke-width="2"/></svg>`;
+const bar=n=>`<div><div class="row" style="justify-content:space-between">${n}<b style="font-size:14px;color:#ff9a1f">5/5</b></div><div class="bar"></div></div>`;
+let total=0,cat='Todas';
+const cats=['Todas','VIPs','Vehículos','Casas','OrigenCoins','Dinero IC','Extras','Mafias','Bandas','Desbaneos'];
+function render(){
+ const q=document.getElementById('q').value.toLowerCase();
+ document.getElementById('cats').innerHTML=cats.map(c=>`<button class="cat ${c==cat?'active':''}">${c}</button>`).join('');
+ const showV=(cat=='Todas'||cat=='VIPs'),showC=(cat=='Todas'||cat=='Vehículos');
+ document.getElementById('vips').innerHTML=showV?vips.filter(v=>v[0].toLowerCase().includes(q)).map(v=>`
+ <div class="card" style="--c:${v[1]}"><div class="art" style="background:radial-gradient(circle,${v[1]}55,transparent 70%)">${crown(v[1])}</div>
+ <div class="body"><h4>${v[0]}</h4>
+ <div class="row"><b>${v[2]}</b> en banco</div><div class="row"><b>${v[3]}</b> OrigenCoins</div><div class="row"><b>${v[4]}</b> de inventario</div>
+ <span class="tag">Dura 30 días</span><br><span class="tag">Y ${v[5]} beneficios más · Ver todo ›</span>
+ <div class="foot"><span class="price">${v[6]}</span><button class="buy" data-p="${v[6].replace(/\D/g,'')}">Comprar</button></div></div></div>`).join(''):'';
+ document.getElementById('cars').innerHTML=showC?cars.filter(c=>c[0].toLowerCase().includes(q)).map(c=>`
+ <div class="card car" style="--c:${c[1]}"><div class="art"><span class="tagx">PACK EXCLUSIVO</span>${carSvg(c[1])}</div>
+ <div class="body"><h4>${c[0]}</h4>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 16px">${['Velocidad','Aceleración','Frenado','Manejo'].map(bar).join('')}</div>
+ <div class="foot"><span class="price">$ 25.000</span><button class="buy" data-p="25000">Comprar</button></div></div></div>`).join(''):'';
+}
+document.getElementById('cats').onclick=e=>{if(e.target.classList.contains('cat')){cat=e.target.textContent;render()}};
+document.getElementById('q').oninput=render;
+document.getElementById('tienda').addEventListener('click',e=>{
+ if(e.target.classList.contains('buy')){total+=+e.target.dataset.p;
+  document.getElementById('cart').textContent='$'+total.toLocaleString('es-AR');
+  const t=document.getElementById('toast');t.textContent='Agregado al carrito';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
+});
+render();
+
+const fmt=n=>n.toLocaleString('es-AR');
+const neon=(c,e,t,l)=>`<div class="neon" style="--c:${c}"><span class="c">${l}</span><span class="e">${e}</span><span class="t">${t}</span></div>`;
+const prod=(c,e,t,label,name,items,price,sub,btn)=>`<div class="card"><div style="background:#050505">${neon(c,e,t,label)}</div><div class="body"><h4>${name}</h4><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul><div class="foot"><div><span class="price">${price}</span>${sub?`<small>${sub}</small>`:''}</div><button class="buy ${btn?'ghost':''}" data-p="${price.replace(/\D/g,'')}">${btn||'Comprar'}</button></div></div></div>`;
+const sec=(t,d)=>`<div class="sec"><h3>${t}</h3><p>${d}</p></div>`;
+const casas=[["Casa Chica","#4fd69a","🏠",15000,["Garage para 2 autos","Inventario 300 kg"]],["Casa Mediana","#3aa0ff","🏡",30000,["Garage para 6 autos","Inventario 600 kg"]],["Casa Grande","#c46bff","🏘",50000,["Garage para 10 autos","Inventario 1000 kg"]]];
+const extras=[["Ropa Addon","#ff7a1f","👕",4000,["Agregado de ropa personalizada al servidor","Consultá previamente en Discord"]],["Transferencia de Cuenta","#9b5cff","🔁",5000,["Transferencia de datos de una cuenta a otra","Requiere aprobación previa en Discord"]],["Punto de Garage (Público)","#ff9a1f","🅿",10000,["Habilitación de un punto de garage","Consultá previamente en Discord"]],["Punto de Música","#ff3bd4","🎧",10000,["Agregar un punto de música en tu casa"]]];
+const mafias=[["#ff7a1f",8000,8,2],["#6be83a",10000,12,3],["#2f6bff",12000,16,4],["#b13bff",15000,20,5]];
+const desb=[["Cheating","#ffe21f","🔓",70000,"Si fuiste baneado por el Anticheat, podés levantarlo"],["Trolling","#4fe83a","💬",45000,"Eliminá tu ban activo por Trolling del servidor"],["HWID / Blacklist","#2f8bff","🔒",60000,"Eliminá tu ban por HWID o Blacklist"],["Dupping","#ff3b3b","📦",40000,"Eliminá tu ban por Dupping del servidor"]];
+function coin(id,cls,c,sym,unit,min,max,step,def,quick,rate,tiers,btxt){
+ return `<div class="coin ${cls}" style="--c:${c}" id="${id}"><div class="disc">${sym}</div><span class="pill tier" style="border-color:${c};color:${c}"></span>
+ <div class="big" style="margin-top:14px"></div><div class="lab">${unit}</div>
+ <input type="range" min="${min}" max="${max}" step="${step}" value="${def}">
+ <div class="quick">${quick.map(q=>`<button data-v="${q[1]}">${q[0]}</button>`).join('')}</div>
+ <div class="total"><div><small>TOTAL</small><small>${rate}</small></div><div style="text-align:right"><b class="tp"></b><small class="usd"></small></div></div>
+ <button class="btn big">${btxt}</button></div>`}
+function bindCoin(id,pref,per,tiers){
+ const el=document.getElementById(id);if(!el)return;
+ const r=el.querySelector('input'),upd=()=>{const v=+r.value;
+  el.querySelector('.big').textContent=pref+fmt(v);
+  el.querySelector('.tp').textContent='$ '+fmt(Math.round(v*per));
+  el.querySelector('.usd').textContent='≈ USD '+(v*per/1547).toFixed(2);
+  el.querySelector('.tier').textContent=tiers.find(t=>v<=t[0])[1];
+  el.querySelectorAll('.quick button').forEach(b=>b.classList.toggle('on',+b.dataset.v==v))};
+ r.oninput=upd;el.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>{r.value=b.dataset.v;upd()});
+ el.querySelector('.btn').onclick=()=>login.classList.add('show');upd()}
+const old=render;
+render=function(){
+ old();
+ const q=document.getElementById('q').value.toLowerCase(),all=cat=='Todas',has=n=>all||cat==n,m=[];
+ const ok=n=>n.toLowerCase().includes(q);
+ if(has('Casas'))m.push(sec('Casas','Tu propio lugar en la ciudad.')+`<div class="grid">${casas.filter(c=>ok(c[0])).map(c=>prod(c[1],c[2],c[0].toUpperCase(),'🏠 CASAS',c[0],c[4],'$ '+fmt(c[3]),'Pago único')).join('')}</div>`);
+ if(has('OrigenCoins'))m.push(sec('OrigenCoins','Elegí cuántas monedas querés.')+coin('c1','','#f4c542','OC','ORIGENCOINS',1000,50000,1000,10000,[['5k',5000],['10k',10000],['20k',20000],['50k',50000]]));
+ if(has('Dinero IC'))m.push(sec('Dinero IC','Dinero para tu cuenta bancaria dentro del juego.')+coin('c2','ic','#4db8ff','$','EN TU BANCO',1000000,50000000,1000000,10000000,[['$5M',5e6],['$10M',1e7],['$20M',2e7],['$50M',5e7]]));
+ if(has('Extras'))m.push(sec('Extras','Ropa, puntos de garage, transferencias y beneficios especiales.')+`<div class="grid">${extras.filter(e=>ok(e[0])).map(e=>prod(e[1],e[2],e[0].toUpperCase(),'⚡ EXTRAS',e[0],e[4],'$ '+fmt(e[3]))).join('')}</div>`);
+ if(has('Mafias'))m.push(sec('Mafias','Organizá tu mafia con sede y beneficios propios.')+`<div class="grid">${mafias.map((x,i)=>prod(x[0],'🕴','MAFIA NIVEL '+(i+1),'⚑ MAFIAS','Mafia #'+(i+1),['Miembros máx.: '+x[2],'Autos GTA Online: '+x[3],'HQ personalizable y nombre propio'],'$ '+fmt(x[1]),'Mensual','Ver niveles')).join('')}${prod('#ff2a2a','🕴','MAFIA EXCLUSIVA','⚑ MAFIAS','Mafia Exclusiva',['Miembros máx.: Ilimitados','Autos GTA Online: 5','HQ personalizable y nombre propio'],'$ 30.000','Mensual','Ver niveles')}</div>`);
+ if(has('Bandas'))m.push(sec('Bandas','El primer paso para tu organización.')+`<div class="banda"><div class="img"><div><p class="mono">Nuevo en Origen.es</p><h2>Armá tu banda</h2></div></div><div class="inf"><p class="mono" style="color:#b9a">Menos que una mafia · Cero costo</p><h3>Banda</h3><p style="color:#cfc5c9;line-height:1.6">Menos que una mafia, pero con sede, autos y beneficios propios.</p><div class="chips"><span>🚗 3 autos</span><span>👥 6 integrantes</span><span>📍 Sede en Sandy</span><span>👑 2 VIP Diamond</span><span>🎁 Pack de bienvenida</span><span>🎒 Inventario</span></div><p class="mono" style="color:#8a7f83;font-size:11px">Cupos</p><div class="cupos">${'<i></i>'.repeat(7)}${'<i class="off"></i>'.repeat(3)}</div><button class="btn big">Reclamar mi banda gratis</button><p style="color:var(--muted);font-size:13px;margin-top:14px">Examen de normativa y ticket automático en Discord.</p></div></div>`);
+ if(has('Desbaneos'))m.push(sec('Desbaneos','Al confirmarse el pago, el ban se elimina automáticamente. Elegí el tipo de sanción correcto antes de pagar.')+`<div class="grid">${desb.filter(d=>ok(d[0])).map(d=>prod(d[1],d[2],'DESBANEO '+d[0].toUpperCase(),'🔓 DESBANEOS','Desbaneo x '+d[0],[d[4],'Se aplica automáticamente al completar el pago'],'$ '+fmt(d[3]),'Pago único')).join('')}</div>`);
+ document.getElementById('more').innerHTML=m.join('');
+ bindCoin('c1','',2,[[5000,'EMPEZANDO'],[15000,'BUEN COLCHÓN'],[50000,'GRAN RESERVA']]);
+ bindCoin('c2','$',0.002,[[5e6,'CUENTA INICIAL'],[2e7,'CUENTA SÓLIDA'],[5e7,'CUENTA MILLONARIA']]);
+};
+render();
+['c1','c2'].forEach(()=>{});
+const $l=document.getElementById('login');
+document.querySelector('.btn').onclick=()=>$l.classList.add('show');
+document.getElementById('lclose').onclick=e=>{e.preventDefault();$l.classList.remove('show')};
+const AUTH_URLS={steam:'/auth/steam',discord:'/auth/discord'};
+fetch('/api/me').then(r=>r.json()).then(u=>{if(u){const b=document.querySelector('nav .btn');b.textContent=u.name+' · Salir';b.onclick=()=>location.href='/auth/logout'}}).catch(()=>{});
+['steam','discord'].forEach(p=>document.getElementById(p).onclick=()=>{
+ if(AUTH_URLS[p]){location.href=AUTH_URLS[p];return}
+ $l.classList.remove('show');const t=document.getElementById('toast');t.textContent='Falta conectar el backend de '+(p=='steam'?'Steam OpenID':'Discord OAuth2');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)});
+const shots=['#3a2a4a','#1f3a4a','#4a2a2a','#2a4a35','#4a3d1f','#2a2a4a'];
+document.getElementById('gallery').innerHTML=shots.map((c,i)=>`<div class="shot" style="background:linear-gradient(160deg,${c},#0a0a0c)">Captura ${i+1}</div>`).join('');
+let on=1200;setInterval(()=>{on=Math.max(900,on+Math.round((Math.random()-.5)*20));document.getElementById('online').textContent=fmt(on)},3000);
+const rc=[['Honda S2000','Vehículos · hace 5 días','$ 25.000'],['VIP Plata','VIPs · hace 1 hora','$ 8.000'],['Mafia #2','Mafias · hace 2 horas','$ 10.000']];
+let ri=0;setInterval(()=>{const r=document.getElementById('recent'),x=rc[ri++%3];r.innerHTML=`<small>Compra reciente</small><b>${x[0]}</b><small>${x[1]}</small><div style="margin-top:8px;font-weight:800">${x[2]}</div>`;r.classList.add('show');setTimeout(()=>r.classList.remove('show'),4500)},9000);
+</script>
+</body>
+</html>
